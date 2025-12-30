@@ -5,8 +5,48 @@ const fixedTop = document.getElementById('fixed-top');
 const hiddenvisible = document.querySelectorAll('.hiddenvisible');
 const questionSpan = document.querySelectorAll('.question span');
 const question = document.querySelectorAll('.question');
-console.log(question);
+const allLinks = document.querySelectorAll('.nav-links');
 const answer = document.querySelectorAll('.answer');
+const menuEl = document.querySelector('.fa-bars');
+const phoneMenu = document.querySelector('.phone-menu');
+
+let positionToggle = false;
+
+menuEl.addEventListener('click', (e) => {
+  e.stopPropagation(); // prevent document click
+
+  menuEl.classList.toggle("fa-x");
+  phoneMenu.classList.toggle('actives');
+
+  positionToggle = menuEl.classList.contains('fa-x');
+
+  document.querySelector('main').style.filter =
+    positionToggle ? 'blur(10px)' : 'blur(0)';
+});
+
+// OUTSIDE CLICK
+document.addEventListener('click', (e) => {
+  if (!positionToggle) return;
+
+  const screenWidth = window.innerWidth;
+  const halfScreenWidth = screenWidth / 2;
+  const userPositionClick = e.clientX;
+
+  if (userPositionClick > halfScreenWidth) {
+    closeMenu();
+  }
+});
+
+function closeMenu() {
+  positionToggle = false;
+
+  document.querySelector('main').style.filter = 'blur(0)';
+  menuEl.classList.remove('fa-x');
+  menuEl.classList.add('fa-bars'); // corrected icon name
+  phoneMenu.classList.remove('actives');
+}
+
+
 
 question.forEach((el, index) => {
   el.addEventListener('click', () => {
@@ -26,6 +66,7 @@ question.forEach((el, index) => {
   });
 });
 
+
 fixedTop.addEventListener('click', ()=>{
 window.scrollTo({
   top: 0,
@@ -35,7 +76,7 @@ window.scrollTo({
   
 })
 let eachHeight = [];
-let detemineHeaderColor = 150;
+let detemineHeaderColor = 50;
 projectItemAll.forEach((el, index)=>{
   const targetHeight = getComputedStyle(el).height;
   eachHeight.push(targetHeight);
@@ -62,21 +103,25 @@ document.addEventListener('scroll', () => {
   headerDesign.style.backgroundColor = 'transparent';
   headerDesign.classList.remove('darkHeaderbG');
   headerTitle.style.color = '';
+   allLinks.forEach((el)=>{
+      el.style.color = '#122a4b'
+    })
 }
 else{
     headerDesign.classList.add('darkHeaderbG');
     headerDesign.style.backgroundColor = '';
     headerTitle.style.color = ' #CBD5E1';
+    allLinks.forEach((el)=>{
+      el.style.color = '#CBD5E1'
+    })
 }
 });
 
 
 
 const roles = [
-  "a Front-End Developer",
-  'a Back-end developer',
+  "a Full Stack Dev",
   "a Web Designer",
-  "a JavaScript Developer",
   "a React Enthusiast"
 ];
 

@@ -3,9 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-html{
-  overflow-x: hidden;
-}
+
 body {
   scroll-behavior: smooth;
   background-color: #F5F7FA; /* main background */
@@ -498,7 +496,7 @@ form{
   width: 100%;
   margin-top: 2rem;
   opacity: 0;
-  transform: translateX(40px);
+  transform: translateX(10px);
   transition: all 0.8s ease-out;
   
 }
@@ -870,6 +868,7 @@ div.skills > i{
 }
   
 }
+
 
 
 

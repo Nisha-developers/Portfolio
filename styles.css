@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+html{
+  overflow-x: hidden;
+}
 body {
   scroll-behavior: smooth;
   background-color: #F5F7FA; /* main background */
@@ -867,5 +870,6 @@ div.skills > i{
 }
   
 }
+
 
 

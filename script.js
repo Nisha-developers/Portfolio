@@ -9,6 +9,40 @@ const allLinks = document.querySelectorAll('.nav-links');
 const answer = document.querySelectorAll('.answer');
 const menuEl = document.querySelector('.fa-bars');
 const phoneMenu = document.querySelector('.phone-menu');
+const progressEl = document.querySelectorAll('progress');
+const elements = document.querySelectorAll('.reveal');
+
+progressEl.forEach(el => {
+  el.dataset.value = el.value;
+  el.value = 0;
+});
+
+function animateProgress(el, target) {
+  if (el.dataset.running === "true") return;
+
+  el.dataset.running = "true";
+  let start = null;
+  const duration = 1200; // ms (smooth)
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+
+    el.value = Math.floor(progress * target);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      el.value = target;
+      el.dataset.running = "false";
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+
+
 
 let positionToggle = false;
 
@@ -153,6 +187,33 @@ function erase() {
     setTimeout(type, typingSpeed);
   }
 }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const el = entry.target;
+
+    if (entry.isIntersecting) {
+      el.classList.add('active');
+
+      // 👉 ONLY animate progress elements
+      if (el.tagName === "PROGRESS") {
+        animateProgress(el, el.dataset.value);
+      }
+
+    } else {
+      el.classList.remove('active');
+
+      // reset progress when leaving
+      if (el.tagName === "PROGRESS") {
+        el.value = 0;
+      }
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+elements.forEach(el => observer.observe(el));
+
 
 // Start typing on page load
 document.addEventListener("DOMContentLoaded", function () {

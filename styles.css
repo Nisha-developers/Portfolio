@@ -168,13 +168,35 @@ div.header-title{
 }
 .hero-section-paragraph{
     padding-block:0.8rem 1rem ;
+    animation: para 1s ease-in forwards;
+      opacity: 0;
+    transform: translateY(20px);
+}
+@keyframes para {
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .title-each-section{
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
   font-size: 45px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s ease-in ;
 }
+.title-each-section.title-up.active{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 button.buttonDesign{
     padding: 0.4rem 0.8rem;
     background-color: transparent;
@@ -201,6 +223,20 @@ button.buttonDesign:hover{
   object-position: center;
   border-radius: 2rem;
   margin-block: 1.5rem;
+  animation: mypicture 1s ease-out 1s forwards;
+  opacity: 0;
+  transform: translateX(20px);
+}
+@keyframes mypicture {
+  from{
+opacity: 0;
+  transform: translateX(20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
 }
 div.skills-container{
   display: flex;
@@ -225,7 +261,7 @@ div.skills-items .skill-state{
 div.skills-items progress{
  height: 10px;
  width: 100%;  
- appearance: none;   
+ appearance: none;  
 }
 progress::-webkit-progress-value {
   background-color: var(--SupporText); /* fill */
@@ -295,13 +331,29 @@ div.projectContainer > .project-item:nth-child(odd){
   border: 1px solid var(--SupporText);
   cursor: pointer;
   position: relative;
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: all 1s ease-in-out;
 }
+.project-item.project-up.active{
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+
 div.projectContainer > .project-item:nth-child(even){
     padding: 1rem 1rem;
   border-radius: 5rem 0rem 5rem 0rem;
   border: 1px solid var(--MainText);
   cursor: pointer;
   position: relative;
+   opacity: 0;
+   transition: all 1s ease-in-out;
+  transform: translateY(30px);
+}
+.project-item.project-down.active{
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 .project-item:nth-child(even) >:nth-child(1){
    text-align: center;
@@ -317,6 +369,17 @@ div.projectContainer > .project-item:nth-child(even){
   object-fit: cover;
   height: auto;
 }
+div.contactmap{
+opacity: 0 !important;
+  transform: translateX(-40px) !important;
+  transition: all 0.8s ease-out !important;
+}
+div.contactmap.left-fade.active{
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+}
+
+
 .project-item >:nth-child(3){
   color: var(--SupporText);
 }
@@ -413,6 +476,15 @@ div.social-media{
 form{
   width: 100%;
   margin-top: 2rem;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s ease-out;
+  
+}
+form.right-fade.active{
+   opacity: 1;
+  transform: translateX(0px);
+
 }
 label{
   display: block;
@@ -567,14 +639,30 @@ progress{
 }
 div.column1skill{
   flex: 0 0 100px;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease-in;
 }
+div.column1skill.scaleup.active{
+opacity: 1;
+transform:scale(1);
+}
+
+
 div.column2skill{
   flex: 1 1 auto;
   margin-top: 2rem;
 }
-div.column2skill .percentage{
+div.column2skill .percentage.left-in{
   float: right;
   padding-top: 0.5rem;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.5s ease-in;
+}
+.percentage.left-in.active{
+opacity: 1 !important;
+transform: translateX(0) !important;
 }
 div.projectContainer{
   display: grid;
@@ -663,6 +751,20 @@ button.contactme{
 button.contactme1{
   width: 200px;
   height: 40px;
+  animation: buttonhero 1s ease-in-out 0.8s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes buttonhero {
+  from{
+      opacity: 0;
+  transform: translateY(20px);
+  }
+  to{
+    opacity: 1;
+    transform: translate(0);
+  }
 }
 
 div.skills-container{
@@ -713,6 +815,7 @@ div.contactmap{
   height: 100% !important;
   transform: translateY(40px);
 }
+
 div.contactmap iframe{
   height: 80%;
 }
